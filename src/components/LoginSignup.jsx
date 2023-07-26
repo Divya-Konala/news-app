@@ -6,10 +6,12 @@ import { toast } from "react-toastify";
 import { ErrorMapping } from "../utils/ErrorMapping";
 import Login from "./Login";
 import SignUp from "./Signup";
+import { useNews } from "../context/NewsContext";
 
-const LoginSignup = ({ handleCloseOutside, handleClose }) => {
+const LoginSignup = ( ) => {
   const [isLogin, setIsLogin] = useState(true);
   const provider = new GoogleAuthProvider();
+  const { handleClose, handleCloseOutside } = useNews();
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)

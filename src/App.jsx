@@ -1,35 +1,26 @@
-import { useState } from "react";
-import {ToastContainer} from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import LoginSignup from "./components/LoginSignup";
 import { NavBar } from "./components/NavBar";
+import AllRoutes from "./Routes/AllRoutes";
+import LoginSignup from "./components/LoginSignup"
+import { useNews } from "./context/NewsContext";
 
 function App() {
-  const [openModal, setOpenModal] = useState(false);
-  const handleCloseOutside = (event) => {
-    if (event.target === event.currentTarget) {
-      setOpenModal(false);
-    }
-  };
-  const handleClose=()=>{
-    setOpenModal(false);
-  }
-  const handleOpen=()=>{
-    setOpenModal(true);
-  }
+  const { openModal} = useNews();
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <header>
-        <NavBar handleOpen={handleOpen} />
+        <NavBar/>
       </header>
-      <main>
-        {openModal ? (
-          <LoginSignup handleCloseOutside={handleCloseOutside} handleClose={handleClose}/>
+      {openModal ? (
+          <LoginSignup/>
         ) : (
           ""
         )}
+      <main>
+        <AllRoutes />
       </main>
     </>
   );
